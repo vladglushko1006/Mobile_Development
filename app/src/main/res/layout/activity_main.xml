@@ -10,15 +10,30 @@
     android:gravity="center_horizontal|top"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/editTextName"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:hint="Input your name"
-        android:inputType="text"
-        android:singleLine="true"
-        android:textAlignment="center" />
+        android:gravity="center_horizontal">
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:hint="Input your name"
+            android:layout_gravity="center_horizontal"
+            android:inputType="text"
+            android:singleLine="true"
+            android:textAlignment="center"/>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50px"
+            android:layout_height="50px"
+            android:layout_gravity="center"
+            android:gravity="top"
+            android:onClick="onClickClear"
+            android:src="@android:drawable/ic_delete" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/buttonSayHello"
@@ -33,4 +48,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center" />
+
+    <!--<Button
+        android:id="@+id/buttonClear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClear"
+        android:text="Clear" />-->
+
 </LinearLayout>
