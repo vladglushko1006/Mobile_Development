@@ -9,22 +9,22 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
-    EditText name;
+    EditText nameEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        name = findViewById(R.id.editTextName);
+        nameEdit = findViewById(R.id.editTextName);
     }
 
     public void onClickClear(View view) {
-        name.setText("");
-
+        nameEdit.setText("");
     }
+    
     public void onSayHelloButtonClick(View v) {
         TextView tv = findViewById(R.id.textViewHello);
-        String name = ((EditText)findViewById(R.id.editTextName)).getText().toString().trim();
+        String name = nameEdit.getText().toString().trim();
 
         if (!name.isEmpty())
             tv.setText("Hello, " + name);
