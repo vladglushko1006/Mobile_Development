@@ -14,6 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal">
+
         <EditText
             android:id="@+id/editTextName"
             android:layout_width="250dp"
@@ -27,8 +28,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="50px"
-            android:layout_height="50px"
+            android:layout_width="70px"
+            android:layout_height="70px"
             android:layout_gravity="center"
             android:gravity="top"
             android:onClick="onClickClear"
@@ -48,12 +49,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center" />
-
-    <!--<Button
-        android:id="@+id/buttonClear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onClear"
-        android:text="Clear" />-->
 
 </LinearLayout>
