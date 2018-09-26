@@ -153,6 +153,13 @@
         android:onClick="onSubmitButtonClick"
         android:text="Submit" />
 
+    <Button
+        android:id="@+id/buttonViewList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onViewListButtonClick"
+        android:text="View List" />
+
     <TextView
         android:id="@+id/textViewErrors"
         android:layout_width="match_parent"
