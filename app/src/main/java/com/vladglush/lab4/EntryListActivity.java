@@ -14,15 +14,15 @@ public class EntryListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry_list);
 
-        SharedPreferences sp  = getSharedPreferences("app_settings", Context.MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences("app_settings", Context.MODE_PRIVATE);
         String entryListString = sp.getString("entry_list", "");
 
-        if (entryListString.isEmpty())
+        if (entryListString.isEmpty()) {
             return;
+        }
 
         String[] entryList = entryListString.split("&");
-        for (int i = 0; i < entryList.length; i++)
-        {
+        for (int i = 0; i < entryList.length; i++) {
             String[] data = entryList[i].split("\\|");
             entryList[i] = data[0] + " " + data[1] + ", " + data[2];
         }

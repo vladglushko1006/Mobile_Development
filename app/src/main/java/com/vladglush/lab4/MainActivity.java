@@ -18,12 +18,12 @@ public class MainActivity extends Activity {
 
     private SharedPreferences sp;
     private SharedPreferences.Editor spEditor;
-    String firstName;
-    String lastName;
-    String email;
-    String phone;
-    String password;
-    String confirmPassword;
+    private EditText fnameEdit;
+    private EditText lnameEdit;
+    private EditText emailEdit;
+    private EditText phoneEdit;
+    private EditText passwordEdit;
+    private EditText confpassEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,70 +40,74 @@ public class MainActivity extends Activity {
         confpassEdit = findViewById(R.id.editTextConfirmPassword);
     }
 
-    private String getFieldText(int id)
-    {
-        return ((EditText)findViewById(id)).getText().toString().trim();
+    private String getFieldText(int id) {
+        return ((EditText) findViewById(id)).getText().toString().trim();
     }
 
-    EditText
-            fnameEdit,
-            lnameEdit,
-            emailEdit,
-            phoneEdit,
-            passwordEdit,
-            confpassEdit;
+    private void clearFields() {
+        fnameEdit.setText("");
+        lnameEdit.setText("");
+        emailEdit.setText("");
+        phoneEdit.setText("");
+        passwordEdit.setText("");
+        confpassEdit.setText("");
+    }
+
+    private void addEntry(String firstName, String lastName, String phone) {
+        String list = sp.getString("entry_list", "");
+        list += firstName + "|" + lastName + "|" + phone + "&";
+
+        spEditor.putString("entry_list", list);
+        spEditor.apply();
+    }
 
     public void onSubmitButtonClick(View v) {
-
-        firstName = getFieldText(R.id.editTextFName);
-        lastName = getFieldText(R.id.editTextLName);
-        email = getFieldText(R.id.editTextEmail);
-        phone = getFieldText(R.id.editTextPhone);
-        password = getFieldText(R.id.editTextPassword);
-        confirmPassword = getFieldText(R.id.editTextConfirmPassword);
+        String firstName = getFieldText(R.id.editTextFName);
+        String lastName = getFieldText(R.id.editTextLName);
+        String email = getFieldText(R.id.editTextEmail);
+        String phone = getFieldText(R.id.editTextPhone);
+        String password = getFieldText(R.id.editTextPassword);
+        String confirmPassword = getFieldText(R.id.editTextConfirmPassword);
 
         String errorsString = "";
 
-        if (firstName.isEmpty())
+        if (firstName.isEmpty()) {
             errorsString += "- first name is required\n";
+        }
 
-        if (lastName.isEmpty())
+        if (lastName.isEmpty()) {
             errorsString += "- last name is required\n";
+        }
 
-        if (email.isEmpty())
+        if (email.isEmpty()) {
             errorsString += "- email is required\n";
-        else if (!EmailValidator.getInstance().isValid(email))
+        } else if (!EmailValidator.getInstance().isValid(email)) {
             errorsString += "- email is invalid\n";
+        }
 
-        if (phone.isEmpty())
+        if (phone.isEmpty()) {
             errorsString += "- phone is required\n";
-        else if (!Patterns.PHONE.matcher(phone).matches())
+        } else if (!Patterns.PHONE.matcher(phone).matches()) {
             errorsString += "- phone is invalid\n";
+        }
 
-        if (password.isEmpty())
+        if (password.isEmpty()) {
             errorsString += "- password is required\n";
+        }
 
-        if (confirmPassword.isEmpty())
+        if (confirmPassword.isEmpty()) {
             errorsString += "- password confirmation is required\n";
-        else if (!password.equals(confirmPassword))
+        } else if (!password.equals(confirmPassword)) {
             errorsString += "- passwords do not match\n";
+        }
 
-        if (!errorsString.isEmpty())
+        if (!errorsString.isEmpty()) {
             // remove the last '\n'
             errorsString = errorsString.substring(0, errorsString.length() - 1);
-        else {
-            String list = sp.getString("entry_list", "");
-            list += firstName + "|" + lastName + "|" + phone + "&";
+        } else {
+            addEntry(firstName, lastName, phone);
 
-            spEditor.putString("entry_list", list);
-            spEditor.apply();
-
-            fnameEdit.setText("");
-            lnameEdit.setText("");
-            emailEdit.setText("");
-            phoneEdit.setText("");
-            passwordEdit.setText("");
-            confpassEdit.setText("");
+            clearFields();
         }
 
         ((TextView) findViewById(R.id.textViewErrors)).setText(errorsString);
@@ -114,4 +118,3 @@ public class MainActivity extends Activity {
         startActivity(i);
     }
 }
-
